@@ -1,0 +1,1 @@
+Instalator dla oprogramowania esp32-watering, pozwala w łatwy sposób wgrać firmware oraz obraz SPIFFS z danymi na płytkę esp32
