@@ -14,7 +14,12 @@ class ConfigWindow(QtWidgets.QWidget, QtCore.QObject):
 
     def openFile(self):
         self._configFile = open(self.basePathConfig + "configFile.json", "r")
-        self._config = json.loads(self._configFile.read(), errors="ignore")
+        try:
+            self._config = json.loads(self._configFile.read())
+        except:
+            self.errorMessageBox("Wystapil problem z plikiem konfiguracyjnym w tej wersji oprogramowania. Sprobuj inna :)")
+            self.close()
+            
         self._configFile.close()
 
         self.wifi = self.wifi()
