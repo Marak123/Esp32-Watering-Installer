@@ -1,0 +1,5 @@
+temp/
+build/clean.bat
+Installer.pyproj
+Installer.sln
+python

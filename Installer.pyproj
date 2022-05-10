@@ -5,7 +5,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{a75e247e-cfec-4830-8c82-eec349311481}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>__main__.pyw</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath />
     <WorkingDirectory>.</WorkingDirectory>
     <OutputPath>.</OutputPath>

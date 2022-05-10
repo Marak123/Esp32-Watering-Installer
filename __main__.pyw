@@ -13,7 +13,7 @@ class window(QtWidgets.QWidget, QtCore.QObject):
       super(window, self).__init__(parent)
       self.resize(500,600)
       self.setWindowTitle("Podlewanko")
-      # self.setWindowIcon(QtGui.QIcon(ICON_APP_PATH))
+      self.setWindowIcon(QtGui.QIcon(ICON_APP_PATH))
 
       self.myports = MyPorts()
       self._portView = self.genPorts()
@@ -34,7 +34,7 @@ class window(QtWidgets.QWidget, QtCore.QObject):
       self.serialWindow = QtWidgets.QMdiSubWindow()
       self.serialWindow.setWidget(self._serialMonitor)
       self.serialWindow.setWindowTitle("Podlewanko")
-      # self.serialWindow.setWindowIcon(QtGui.QIcon(ICON_APP_PATH))
+      self.serialWindow.setWindowIcon(QtGui.QIcon(ICON_APP_PATH))
       self.serialWindow.setGeometry(0, 0, 800, 600)
       self._serialMonitor.parent = self.serialWindow
 

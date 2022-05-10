@@ -45,7 +45,7 @@ class Process:
         self.logFile = logFile + "-" + time.strftime("%Y-%m-%d-%H-%M-%S") + ".log"
 
         with io.open(COMMAND_LOG_FILE + "\\" + self.logFile, "wb") as wl:
-            self.subp = subprocess.Popen(command, stdout=wl)
+            self.subp = subprocess.Popen(command, stdout=wl, creationflags=0x08000000)
 
         self._taskThread = QtCore.QTimer(interval=0.1, timeout=self.runCommand)
         self._taskThread.start()
@@ -90,7 +90,7 @@ class UploadService:
             self.objPorts.disableWindow()
 
         self.downloadFile(version, "firmware.bin")
-        self.process.process(logFile="uploadFirmware", command=".\\app\\esptool.exe --chip esp32 -p " + port + " --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 80m --flash_size detect 0xe000 .\\app\\image\\boot_app0.bin 0x1000 .\\app\\image\\bootloader_dio_80m.bin 0x10000 .\\temp\\" + version + "\\firmware.bin")
+        self.process.process(logFile="uploadFirmware", command=".\\app\\esptool.exe --chip esp32 -p " + port + " --baud 921600 --before default_reset --after hard_reset write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 0xe000 .\\app\\image\\boot_app0.bin 0x1000 .\\app\\image\\bootloader_dio_40m.bin 0x10000 .\\temp\\" + version + "\\firmware.bin")
 
         self._thred = QtCore.QTimer(interval=0.1, timeout=self.checkEndProcess)
         self._thred.start()
@@ -116,7 +116,7 @@ class UploadService:
         if self.objPorts.windowOpen:
             self.objPorts.disableWindow()
 
-        self.process.process(logFile="uploadSPIFFS", command=".\\app\\esptool.exe --chip esp32 -p " + self._port + " --before default_reset --after hard_reset --baud 921600 write_flash -z --flash_mode dio --flash_freq 80m --flash_size detect 2686976 .\\temp\\" + self._ver + "\\spiffs.bin", communicat=True)
+        self.process.process(logFile="uploadSPIFFS", command=".\\app\\esptool.exe --chip esp32 -p " + self._port + " --before default_reset --after hard_reset --baud 921600 write_flash -z --flash_mode dio --flash_freq 40m --flash_size detect 2686976 .\\temp\\" + self._ver + "\\spiffs.bin", communicat=True)
 
         self._thred = QtCore.QTimer(interval=0.1, timeout=self.checkEndProcess)
         self._thred.start()

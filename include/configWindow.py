@@ -3,6 +3,7 @@ import json
 import jsbeautifier
 import datetime
 import os
+import subprocess
 
 from .ownHttp import *
 from .conf import *
@@ -10,7 +11,7 @@ from .conf import *
 class ConfigWindow(QtWidgets.QWidget, QtCore.QObject):
     def __init__(self, version="",parent=None):
         super(ConfigWindow, self).__init__(parent)
-        self.basePathConfig = ".\\temp\\" + version + "\\spiffs-data\\"
+        self.basePathConfig = os.getcwd() + "\\temp\\" + version + "\\spiffs-data\\"
 
     def openFile(self):
         self._configFile = open(self.basePathConfig + "configFile.json", "r")
@@ -37,9 +38,16 @@ class ConfigWindow(QtWidgets.QWidget, QtCore.QObject):
         dialog.exec_()
 
     def saveConfig(self):
+        c = "NIE ZAPISALO POPRAWNEJ KONFIGURACJI. WYSTAPIL BLAD!!"
+        try:
+            c = json.dumps(self._config)
+        except:
+            self.errorMessageBox("Nie udało się zapisać.")
+        
         self._configFile = open(self.basePathConfig + "configFile.json", "w")
-        self._configFile.write(jsbeautifier.beautify(json.dumps(self._config), 2))
+        self._configFile.write(c)
         self._configFile.close()
+
 
     def saveWifi(self):
         self._config["WIFI"]["SSID"] = self.wifiName.text()
@@ -650,10 +658,10 @@ class ConfigWindow(QtWidgets.QWidget, QtCore.QObject):
         return tree
 
     def openConfigFileInEditor(self):
-        os.system("notepad.exe " + self.basePathConfig + "configFile.json")
+        subprocess.Popen("notepad.exe " + self.basePathConfig + "configFile.json", creationflags=0x08000000)
 
     def openConfigFolder(self):
-        os.system("explorer.exe " + os.path.dirname(os.getcwd() + self.basePathConfig))
+        subprocess.Popen("explorer.exe " + os.path.dirname(os.getcwd() + self.basePathConfig), creationflags=0x08000000)
 
     def mainOption(self):
         closeBtn = QtWidgets.QPushButton(self)
