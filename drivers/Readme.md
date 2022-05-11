@@ -38,3 +38,6 @@ Kliknij `Przeglądaj...` i wybierz likalizację rozpakowanego archiwum `CP210x_U
 Instalacja w tym przypadku jest bardzo prosta.
 
 Po rozpakowaniu archiwum należy wybrać plik `CP210xVCPInstaller_x64.exe` lub `CP210xVCPInstaller_x86.exe` zależnie od wersji bitowej zainstalowanego systemu operacyjnego.
+
+
+Po odpaleniu pliku postępuj zgodnie z instalatorem.
