@@ -5,7 +5,7 @@
 ### 1. `CP210x_Universal_Windows_Driver-File.zip `
 ##### zawiera same sterowniki (pliki) bez instalatora
 aby zainstalowaćsterowniki należy przejść do `Menedżer urządzeń`
-![Menedżer urządzeń](/image/menedżer-urządzeń.png?raw=true "Employee Data title")
+![Menedżer urządzeń](./drivers/image/menedżer-urządzeń.png?raw=true "Employee Data title")
 
 ***
 
