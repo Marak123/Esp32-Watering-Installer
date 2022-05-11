@@ -22,10 +22,16 @@ class MyPorts:
         return self.ports
 
     def getPortString(self, iden):
-        return str(self.ports[iden])
+        if(len(self.ports) > iden):
+            return str(self.ports[iden])
+        else:
+            return "No ports found"
 
     def getPortShort(self, iden):
-        return str(self.ports[iden]).split(" ")[0]
+        if(len(self.ports) > iden):
+            return str(self.ports[iden]).split(" ")[0]
+        else:
+            return "No ports found"
 
     def scanPort(self):
         return self.ports != serial.tools.list_ports.comports()
